@@ -108,16 +108,16 @@ export class MainComponent implements OnInit {
 
   searchMember(url: string) {
     this.apiRest.getDataApi(url).subscribe(data => {
-      this.responseMembers = data.terms.Member;
-      this.setSearchResults(data.counts.Member);
+      this.responseMembers = data['terms'].Member;
+      this.setSearchResults(data['counts'].Member);
       console.log('Members:' + this.responseMembers);
     });
   }
 
   searchOffice(url: string) {
     this.apiRest.getDataApi(url).subscribe(data => {
-      this.responseOffice = data.terms.Office;
-      this.setSearchResults(data.counts.Office);
+      this.responseOffice = data['terms'].Office;
+      this.setSearchResults(data['counts'].Office);
       console.log('Office:' + this.responseOffice);
     });
   }
@@ -127,53 +127,53 @@ export class MainComponent implements OnInit {
     this.apiRest.getDataApi(url).subscribe(data => {
       this.responseProperty = false;
       let addres_count = 0, city_count = 0, high_school_count = 0, school_dist_count = 0, state_count = 0;
-      if (data.terms.Address !== undefined) {
-        this.responseAddress = data.terms.Address;
+      if (data['terms'].Address !== undefined) {
+        this.responseAddress = data['terms'].Address;
         this.responseProperty = true;
       }
 
-      if (data.terms.City !== undefined) {
-        this.responseCity = data.terms.City;
+      if (data['terms'].City !== undefined) {
+        this.responseCity = data['terms'].City;
         this.responseProperty = true;
       }
 
-      if (data.terms.HighSchool !== undefined) {
-        this.responseHighSchool = data.terms.HighSchool;
+      if (data['terms'].HighSchool !== undefined) {
+        this.responseHighSchool = data['terms'].HighSchool;
         this.responseProperty = true;
       }
 
-      if (data.terms.SchoolDist !== undefined) {
-        this.responseSchoolDist = data.terms.SchoolDist;
+      if (data['terms'].SchoolDist !== undefined) {
+        this.responseSchoolDist = data['terms'].SchoolDist;
         this.responseProperty = true;
       }
 
-      if (data.terms.State !== undefined) {
-        this.responseState = data.terms.State;
+      if (data['terms'].State !== undefined) {
+        this.responseState = data['terms'].State;
         this.responseProperty = true;
       }
 
-      if (data.counts.Addresss !== undefined) {
-        addres_count = data.counts.Address;
+      if (data['counts'].Addresss !== undefined) {
+        addres_count = data['counts'].Address;
       }
 
-      if (data.counts.City !== undefined) {
-        city_count = data.counts.City;
+      if (data['counts'].City !== undefined) {
+        city_count = data['counts'].City;
       }
 
-      if (data.counts.HighSchool !== undefined) {
-        high_school_count = data.counts.HighSchool;
+      if (data['counts'].HighSchool !== undefined) {
+        high_school_count = data['counts'].HighSchool;
       }
 
-      if (data.counts.SchoolDist !== undefined) {
-        school_dist_count = data.counts.SchoolDist;
+      if (data['counts'].SchoolDist !== undefined) {
+        school_dist_count = data['counts'].SchoolDist;
       }
 
-      if (data.counts.State !== undefined) {
-        state_count = data.counts.State;
+      if (data['counts'].State !== undefined) {
+        state_count = data['counts'].State;
       }
-
-      let sum = addres_count + city_count + high_school_count + school_dist_count + state_count;
-      this.setSearchResults(sum);
+      this.setSearchResults(
+        addres_count + city_count + high_school_count + school_dist_count + state_count
+      );
       console.log('Property:' + data);
     });
 
