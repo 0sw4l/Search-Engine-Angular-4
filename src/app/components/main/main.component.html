@@ -1,0 +1,297 @@
+<nav class="blue-grey darken-1">
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo header">{{ title }}</a>
+    <ul class="right hide-on-med-and-down custom-nav">
+      <li>
+        <a class="waves-effect waves-light btn  green lighten-2" (click)="setCollectionMember()">
+          <i class="material-icons left">person_pin</i>
+          Member
+        </a>
+      </li>
+      <li>
+        <a class="waves-effect waves-light btn light-green lighten-2" (click)="setCollectionOffice()">
+          <i class="material-icons left">room</i>
+          Office
+        </a>
+      <li>
+        <a class="waves-effect waves-light btn  lime lighten-2" (click)="setCollectionProperty()">
+          <i class="material-icons left">favorite_border</i>
+          Property
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container pull-bottom">
+
+  <div class="row">
+    <div class="col s12">
+      <h2 class="deep-purple-text lighten-1 center">
+        Search results for
+        <span class="amber-text darken-4">{{ _current_collection }}</span>:
+        <span class="blue-text lighten-1 bold-text">{{ search_results }}</span>
+      </h2>
+    </div>
+  </div>
+
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s7">
+        <input #searchBox
+               id="search-box"
+               (keyup)="search(searchBox.value)"
+               placeholder="{{ placeholder }}"
+               type="text"
+               class="validate">
+      </div>
+
+
+
+      <div class="col s12 pull-back" *ngIf="responseMembers">
+        <div class="col s12 ">
+          <div class="maininput">
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          Member
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let item of responseMembers">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ item.FullName }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col s12 pull-back" *ngIf="responseOffice">
+        <div class="col s12 ">
+          <div class="maininput">
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          Office
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let item of responseOffice">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ item.OfficeName }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s9 pull-back" *ngIf="responseProperty">
+
+        <div class="col s12 ">
+
+
+          <div class="maininput">
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          State
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let itemState of responseState">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ itemState.text }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          City
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let itemCity of responseCity">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ itemCity.text }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          SchoolDist
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let itemSchoolDist of responseSchoolDist">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ itemSchoolDist.text }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          HighSchool
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let itemHighSchool of responseHighSchool">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ itemHighSchool.text }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="maininput-1">
+              <div class="maininput-2">
+                <div>
+                  <span tabindex="0" class="mainspan">
+                    <div>
+                      <div class="mainspan-1">
+                        <div>
+                          Address
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="input-item">
+                <ng-container *ngFor="let itemAddress of responseAddress">
+                  <div>
+                    <span tabindex="0" class="span-item">
+                      <div>
+                        <div class="span-item-1">
+                          <div>
+                            {{ itemAddress.text }}
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
