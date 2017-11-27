@@ -124,14 +124,33 @@ export class MainComponent implements OnInit {
 
   searchProperty(url: string) {
 
-    this.apiRest.getDataProperty(url).subscribe(data => {
-      this.responseProperty = true;
-      this.responseAddress = data.terms.Address;
-      this.responseCity = data.terms.City;
-      this.responseHighSchool = data.terms.HighSchool;
-      this.responseSchoolDist = data.terms.SchoolDist;
-      this.responseState = data.terms.State;
+    this.apiRest.getDataApi(url).subscribe(data => {
+      this.responseProperty = false;
       let addres_count = 0, city_count = 0, high_school_count = 0, school_dist_count = 0, state_count = 0;
+      if (data.terms.Address !== undefined) {
+        this.responseAddress = data.terms.Address;
+        this.responseProperty = true;
+      }
+
+      if (data.terms.City !== undefined) {
+        this.responseCity = data.terms.City;
+        this.responseProperty = true;
+      }
+
+      if (data.terms.HighSchool !== undefined) {
+        this.responseHighSchool = data.terms.HighSchool;
+        this.responseProperty = true;
+      }
+
+      if (data.terms.SchoolDist !== undefined) {
+        this.responseSchoolDist = data.terms.SchoolDist;
+        this.responseProperty = true;
+      }
+
+      if (data.terms.State !== undefined) {
+        this.responseState = data.terms.State;
+        this.responseProperty = true;
+      }
 
       if (data.counts.Addresss !== undefined) {
         addres_count = data.counts.Address;
@@ -155,7 +174,7 @@ export class MainComponent implements OnInit {
 
       let sum = addres_count + city_count + high_school_count + school_dist_count + state_count;
       this.setSearchResults(sum);
-      console.log('Property:' + this.Address);
+      console.log('Property:' + data);
     });
 
   }

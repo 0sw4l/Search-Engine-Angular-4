@@ -22,14 +22,6 @@ export class ApiRestService {
       );
   }
 
-  getDataProperty(url: string): Observable<Data[]> {
-    return this.http.get<Data[]>(url)
-      .pipe(
-        tap(data => this.log('data ' + data)),
-        catchError(this.handleError('getProperty', []))
-      );
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -44,9 +36,9 @@ export class ApiRestService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a ApiRestService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
+    this.messageService.add('ApiRestService: ' + message);
   }
 
 }

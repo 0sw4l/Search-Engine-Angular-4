@@ -130,7 +130,7 @@
 
 
           <div class="maininput">
-            <div class="maininput-1">
+            <div class="maininput-1" *ngIf="responseState.length > 0">
               <div class="maininput-2">
                 <div>
                   <span tabindex="0" class="mainspan">
@@ -161,7 +161,7 @@
               </div>
             </div>
 
-            <div class="maininput-1">
+            <div class="maininput-1" *ngIf="responseCity.length > 0">
               <div class="maininput-2">
                 <div>
                   <span tabindex="0" class="mainspan">
@@ -193,7 +193,7 @@
             </div>
 
 
-            <div class="maininput-1">
+            <div class="maininput-1" *ngIf="responseSchoolDist.length > 0">
               <div class="maininput-2">
                 <div>
                   <span tabindex="0" class="mainspan">
@@ -225,7 +225,7 @@
             </div>
 
 
-            <div class="maininput-1">
+            <div class="maininput-1" *ngIf="responseHighSchool.length > 0">
               <div class="maininput-2">
                 <div>
                   <span tabindex="0" class="mainspan">
@@ -256,7 +256,7 @@
               </div>
             </div>
 
-            <div class="maininput-1">
+            <div class="maininput-1" *ngIf="responseAddress.length > 0">
               <div class="maininput-2">
                 <div>
                   <span tabindex="0" class="mainspan">
